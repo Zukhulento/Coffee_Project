@@ -1,10 +1,12 @@
 import { Request, Response } from "express";
-import { AppDataSource } from "../config/data-source";
-import { User } from "../entities/User";
-import { hashPassword, comparePasswords, generateToken } from "./auth.service";
+import { AppDataSource } from "../../config/data-source";
+import { User } from "../../entities/User";
+import { hashPassword, comparePasswords, generateToken } from "../../services/auth/auth.service";
 
+// Instance of user repository
 const userRepo = AppDataSource.getRepository(User);
 
+// Register user function
 export const register = async (req: Request, res: Response) => {
   const { name, email, password } = req.body;
 
@@ -24,6 +26,7 @@ export const register = async (req: Request, res: Response) => {
   }
 };
 
+// Login user function
 export const login = async (req: Request, res: Response) => {
   const { email, password } = req.body;
 

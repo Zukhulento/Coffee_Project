@@ -1,5 +1,6 @@
 import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn } from "typeorm";
 
+// Creating Purchase 
 @Entity()
 export class Purchase {
   @PrimaryGeneratedColumn()

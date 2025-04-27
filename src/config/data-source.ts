@@ -2,14 +2,16 @@ import { DataSource } from "typeorm";
 import { User } from "../entities/User";
 import { Purchase } from "../entities/Purchase";
 import { Payment } from "../entities/Payment";
+import { envs } from "./env.config";
 
+// DataSource 
 export const AppDataSource = new DataSource({
   type: "mssql",
-  host: "localhost",
-  port: 1433,
-  username: "sa",
-  password: "123",
-  database: "coffee_db",
+  host: envs.DB_HOST,
+  port: envs.DB_PORT,
+  username: envs.DB_USERNAME,
+  password: envs.DB_PASSWORD,
+  database: envs.DB_DATABASE,
   synchronize: true,
   logging: true,
   entities: [User, Purchase, Payment],

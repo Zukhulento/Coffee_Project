@@ -1,6 +1,7 @@
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from "typeorm";
 import { Payment } from "./Payment";
 
+// Creating user class
 @Entity()
 export class User {
   @PrimaryGeneratedColumn()

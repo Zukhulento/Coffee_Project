@@ -1,8 +1,7 @@
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
-import { User } from "../entities/User";
-
-const JWT_SECRET = process.env.JWT_SECRET || "mysecret";
+import { User } from "../../entities/User";
+import { envs } from "../../config/env.config";
 
 // Función para encriptar contraseña
 export const hashPassword = (password: string) => {
@@ -16,7 +15,7 @@ export const comparePasswords = (raw: string, hashed: string) => {
 
 // Función para generar token JWT (El token lleva id el email)
 export const generateToken = (user: User) => {
-  return jwt.sign({ id: user.id, email: user.email }, JWT_SECRET, {
+  return jwt.sign({ id: user.id, email: user.email }, envs.JWT_SECRET, {
     expiresIn: "7d",
   });
 };

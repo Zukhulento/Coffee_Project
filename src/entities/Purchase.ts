@@ -1,17 +1,27 @@
-import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn } from "typeorm";
+// src/entities/Purchase.ts
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  CreateDateColumn,
+  OneToMany,
+} from "typeorm";
+import { Debt } from "./Debt";
 
-// Creating Purchase 
 @Entity()
 export class Purchase {
   @PrimaryGeneratedColumn()
   id!: number;
 
   @Column()
-  amount!: number;
-
-  @Column()
   description!: string;
 
+  @Column("decimal", { precision: 10, scale: 2 })
+  totalAmount!: number;
+
   @CreateDateColumn()
-  purchaseDate!: Date;
+  createdAt!: Date;
+
+  @OneToMany(() => Debt, (debt) => debt.purchase)
+  debts!: Debt[];
 }

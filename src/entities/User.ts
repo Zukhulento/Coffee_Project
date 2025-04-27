@@ -1,5 +1,6 @@
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from "typeorm";
 import { Payment } from "./Payment";
+import { Debt } from "./Debt";
 
 // Creating user class
 @Entity()
@@ -15,7 +16,10 @@ export class User {
 
   @OneToMany(() => Payment, (payment) => payment.user)
   payments!: Payment[];
-  
+
   @Column()
   password!: string;
+  
+  @OneToMany(() => Debt, (debt) => debt.user)
+  debts!: Debt[];
 }
